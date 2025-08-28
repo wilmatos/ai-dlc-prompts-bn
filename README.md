@@ -1,4 +1,4 @@
-# Prompts Legados AI-DLC (Español)
+# Prompts AI-DLC (Español) Versión 1
 
 ## Descripción General
 
