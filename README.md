@@ -1,8 +1,8 @@
-# Prompts AI-DLC (Español)
+# Prompts Legados AI-DLC (Español)
 
 ## Descripción General
 
-Esta colección de prompts implementa el marco AI-DLC original con un enfoque de 2 fases: Inception → Construction. Cada prompt está numerado secuencialmente y diseñado para trabajar con las salidas del prompt anterior.
+Esta colección de prompts legados implementa el marco AI-DLC original con un enfoque de 2 fases: Inception → Construction. Cada prompt está numerado secuencialmente y diseñado para trabajar con las salidas del prompt anterior.
 
 ## Estructura de Directorios
 
@@ -16,12 +16,52 @@ Esta colección de prompts implementa el marco AI-DLC original con un enfoque de
 │   ├── 05_arquitectura.md
 │   └── 06_construccion-iac-apis.md
 ├── audit/
-│   ├── estado-aidlc-legacy.md
-│   └── registro-actividad-legacy.md
+│   ├── estado-aidlc.md
+│   └── registro-actividad.md
 └── README.md
 ```
 
 ## Orden de Ejecución
+
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant P1 as @01_historias-usuario
+    participant P2 as @02_definicion-unidades
+    participant P3 as @03_modelo-componentes
+    participant P4 as @04_generacion-codigo
+    participant P5 as @05_arquitectura
+    participant P6 as @06_construccion-iac-apis
+    participant A as Audit Files
+
+    Note over U,A: Fase 1: Inception
+    
+    U->>P1: Requisitos + Restricciones
+    P1->>A: Update estado-aidlc.md
+    P1->>U: user_stories.md + acceptance_criteria.md
+    
+    U->>P2: user_stories.md
+    P2->>A: Update estado-aidlc.md
+    P2->>U: design/unit_*.md
+    
+    Note over U,A: Fase 2: Construction
+    
+    U->>P3: design/unit_*.md
+    P3->>A: Update estado-aidlc.md
+    P3->>U: design/component_model.md
+    
+    U->>P4: component_model.md + Stack Tecnológico
+    P4->>A: Update estado-aidlc.md
+    P4->>U: backend/ (código generado)
+    
+    U->>P5: component_model.md + Plataforma
+    P5->>A: Update estado-aidlc.md
+    P5->>U: deployment/ + validation_report.md
+    
+    U->>P6: deployment/ + Herramientas IaC
+    P6->>A: Update estado-aidlc.md
+    P6->>U: IaC + APIs REST
+```
 
 ### Fase 1: Inception
 1. **@01_historias-usuario** - Crear historias de usuario desde requisitos
@@ -137,8 +177,8 @@ Cuando un prompt requiere clarificación:
 ## Seguimiento de Auditoría
 
 Cada prompt actualiza automáticamente:
-- **audit/estado-aidlc-legacy.md**: Progreso de fases y etapas
-- **audit/registro-actividad-legacy.md**: Log de todas las acciones
+- **audit/estado-aidlc.md**: Progreso de fases y etapas
+- **audit/registro-actividad.md**: Log de todas las acciones
 
 ## Mejores Prácticas
 
@@ -205,5 +245,4 @@ echo "Sistema de gestión de inventario..." > requirements.md
 # 2. Saltar a arquitectura
 @05_arquitectura
 # Referencia: design/component_model.md (existente)
-```
 ```
